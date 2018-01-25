@@ -32,7 +32,7 @@
         android:layout_marginBottom="16dp"
         android:textSize="16sp"
         android:textColor="#000"
-        android:text="2" />
+        android:text="0" />
 
     <Button
         android:layout_width="48dp"

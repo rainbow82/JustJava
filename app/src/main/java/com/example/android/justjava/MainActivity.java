@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        EditText userNameText = (EditText) findViewById(R.id.user_name_field);
-        String userName =  userNameText.getText().toString();
+        EditText userNameField = (EditText) findViewById(R.id.user_name_field);
+        String userName =  userNameField.getText().toString();
 
         displayMessage(createOrderSummary(hasWhippedCream, hasChocolate, userName));
     }

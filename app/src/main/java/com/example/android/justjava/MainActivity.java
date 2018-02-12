@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.NumberFormat;
 
 /**
@@ -14,26 +16,35 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    int quantity = 1;
     int price = 5;
 
-//    @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
     public void increment(View view) {
+        if(quantity >= 100) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Maximum cups ordered is 100", Toast.LENGTH_SHORT);
+            toast.show();
+            display(quantity);
+            return;
+        }
         quantity = quantity + 1;
         display(quantity);
     }
 
     public void decrement(View view) {
-        if(quantity > 0){
-            quantity = quantity - 1;
+        if(quantity <= 1){
+            Toast toast = Toast.makeText(getApplicationContext(), "Must have Minimum of 1 cup", Toast.LENGTH_SHORT);
+            toast.show();
             display(quantity);
+            return;
         }
-
+        quantity = quantity - 1;
+        display(quantity);
     }
 
     /**

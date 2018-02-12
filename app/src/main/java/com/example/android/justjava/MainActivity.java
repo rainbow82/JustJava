@@ -68,19 +68,21 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
     }
 
-    private int calculatePrice(boolean addWhippedCream, boolean addChocolate){
-        if(addWhippedCream && addChocolate){
-            return (price + 3) * quantity;
-        }
-        else if(addChocolate){
-            return (price + 2) * quantity;
-        }
-        else if(addWhippedCream){
-            return (price + 1) * quantity;
-        }else{
-            return quantity * price;
-        }
+    /**
+     *
+     * @param addWhippedCream
+     * @param addChocolate
+     * @return
+     */
 
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate){
+        if(addChocolate){
+            price += 2;
+        }
+        if(addWhippedCream){
+            price += 1;
+        }
+            return price * quantity;
     }
 
 

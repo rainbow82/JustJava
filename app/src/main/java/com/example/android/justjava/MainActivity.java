@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        EditText userNameText = (EditText) findViewById(R.id.user_name_view);
-        String userName =  userNameText.getText().toString();
+        EditText userNameField = (EditText) findViewById(R.id.user_name_field);
+        String userName =  userNameField.getText().toString();
 
         displayMessage(createOrderSummary(hasWhippedCream, hasChocolate, userName));
     }
@@ -68,14 +68,27 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
     }
 
-    private int calculatePrice(){
-        return quantity * price;
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate){
+        if(addWhippedCream && addChocolate){
+            return (price + 3) * quantity;
+        }
+        else if(addChocolate){
+            return (price + 2) * quantity;
+        }
+        else if(addWhippedCream){
+            return (price + 1) * quantity;
+        }else{
+            return quantity * price;
+        }
+
     }
 
 
     /**
      * * Creates a text summary of the order
      * @param addWhippedCream whether or not the user wants whipped cream
+     * @param addChocolate yes or no to chocolate option
+     * @param userName
      * @return order summary
     */
     private String createOrderSummary(boolean addWhippedCream, boolean addChocolate, String userName){
@@ -83,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\nHas Whipped Cream: " + addWhippedCream;
         priceMessage += "\nHas Chocolate: " + addChocolate;
         priceMessage += "\nQuantity: " + quantity + "\n";
-        priceMessage += "Total: $" + calculatePrice() + "\nThank you!";
+        priceMessage += "Total: $" + calculatePrice(addWhippedCream, addChocolate) + "\nThank you!";
         return  priceMessage;
     }
 

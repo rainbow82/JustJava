@@ -1,6 +1,8 @@
 package com.example.android.justjava;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void increment(View view) {
         if(quantity >= 100) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Maximum cups ordered is 100", Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(this, "Maximum cups ordered is 100", Toast.LENGTH_SHORT).show();
             display(quantity);
             return;
         }
@@ -38,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void decrement(View view) {
         if(quantity <= 1){
-            Toast toast = Toast.makeText(getApplicationContext(), "Must have Minimum of 1 cup", Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(this, "Must have Minimum of 1 cup", Toast.LENGTH_SHORT).show();
             display(quantity);
             return;
         }
@@ -60,8 +60,16 @@ public class MainActivity extends AppCompatActivity {
         EditText userNameField = (EditText) findViewById(R.id.user_name_field);
         String userName =  userNameField.getText().toString();
 
-        displayMessage(createOrderSummary(hasWhippedCream, hasChocolate, userName));
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + userName);
+        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(hasWhippedCream, hasChocolate, userName));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
     }
+
 
     /**
      * This method displays the given quantity value on the screen.
@@ -71,13 +79,6 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
 
     /**
      *

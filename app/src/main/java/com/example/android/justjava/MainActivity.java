@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         String priceMessage = "Name: " + userName;
         priceMessage += "\nHas Whipped Cream: " + addWhippedCream;
         priceMessage += "\nHas Chocolate: " + addChocolate;
-        priceMessage += "\nQuantity: " + quantity + "\n";
+        priceMessage += "\n"+ R.id.quantity_text_view + quantity + "\n";
         priceMessage += "Total: $" + calculatePrice(addWhippedCream, addChocolate) + "\nThank you!";
         return  priceMessage;
     }

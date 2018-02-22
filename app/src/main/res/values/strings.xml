@@ -10,6 +10,7 @@
     <string name="user_name_hint">Name</string>
     <string name="whipped_cream_topping">Whipped Cream</string>
     <string name="chocolate_topping">Chocolate</string>
+    <string name="vanillaCreamer_topping">Vanilla Cream</string>
 
     <!--
    Name for the order summary. It will be shown in the format of "Name: Kermit" where Kermit is the
@@ -28,6 +29,13 @@
       "Add chocolate? true" or "Add chocolate? false". [CHAR LIMIT=NONE]
     -->
     <string name="order_summary_chocolate">Add chocolate? <xliff:g id="addChocolate" example="true">%b</xliff:g></string>
+
+
+    <!--
+      Chocolate topping for the order summary. It will be shown in the format of
+      "Add chocolate? true" or "Add chocolate? false". [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_vanillaCreamer">Add vanilla creamer? <xliff:g id="addChocolate" example="true">%b</xliff:g></string>
 
     <!--
 Quantity for the order summary. It will be shown in the format of "Quantity: 2" where 2 is the

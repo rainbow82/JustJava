@@ -50,6 +50,16 @@
             android:text="@string/chocolate_topping"
             android:textSize="16sp" />
 
+        <CheckBox
+            android:id="@+id/vanillaCreamer_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:paddingLeft="24dp"
+            android:text="@string/vanillaCreamer_topping"
+            android:textSize="16sp" />
+
 
         <TextView
             android:layout_width="wrap_content"

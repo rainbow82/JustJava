@@ -51,11 +51,14 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
 
-        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
+
+        CheckBox vanillaCreamerCheckbox = findViewById(R.id.vanillaCreamer_checkbox);
+        boolean hasVaniallCreamer = vanillaCreamerCheckbox.isChecked();
 
         EditText userNameField = (EditText) findViewById(R.id.user_name_field);
         String userName =  userNameField.getText().toString();
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + userName);
-        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(hasWhippedCream, hasChocolate, userName));
+        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(hasWhippedCream, hasChocolate, hasVaniallCreamer, userName));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
@@ -105,10 +108,11 @@ public class MainActivity extends AppCompatActivity {
      * @param userName
      * @return order summary
     */
-    private String createOrderSummary(boolean addWhippedCream, boolean addChocolate, String userName){
+    private String createOrderSummary(boolean addWhippedCream, boolean addChocolate, boolean addVaniallaCreamer, String userName){
         String priceMessage = getString(R.string.order_summary_name, userName);
         priceMessage += "\n"+ getString(R.string.order_summary_whipped_cream, addWhippedCream);
         priceMessage += "\n" + getString(R.string.order_summary_chocolate, addChocolate);
+        priceMessage += "\n" + getString(R.string.order_summary_vanillaCreamer,addVaniallaCreamer );
         priceMessage += "\n" + getString(R.string.order_summary_quantity, quantity);
         priceMessage += "\nTotal: $" + calculatePrice(addWhippedCream, addChocolate) + "\nThank you!";
         return  priceMessage;
